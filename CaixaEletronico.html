@@ -1,0 +1,125 @@
+<html>
+
+<head>
+
+	<script>
+		var saldo = 100.5; //Float
+
+		function inicio() {
+
+			//inicio desafio 1
+
+			var nomeUsuario = prompt("Qual o seu nome?")
+			alert("Olá " + nomeUsuario + " é um prazer ter você por aqui!.")
+
+			//final desafio 1
+
+			var escolha = parseInt(prompt('Selecione uma opção 1.) Saldo 2.) Depósito 3.) Saque 4.) Extraro 5.) Sair'));
+
+			
+
+			//inicio desafio 2
+
+			switch (escolha) {
+				case 1:
+					ver_saldo();
+					break;
+				case 2:
+					fazer_deposito();
+					break;
+				case 3:
+					fazer_saque();
+					break;
+				case 4:
+					extrato()
+					break;
+				case 5:
+					transferencia()
+					break;
+				case 6:
+					sair()
+					break;
+				default:
+					erro()
+					break;
+			}
+
+			//final desafio 2
+
+		}		
+
+		function ver_saldo() {
+			alert('Seu saldo atual é: ' + saldo);
+			inicio();
+		}
+
+		function fazer_deposito() {
+			var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+			if (isNaN(deposito) || deposito === '') {
+				alert('Por favor, informe um número:');
+				fazer_deposito();
+			} else {
+				saldo += deposito;
+				ver_saldo();
+			}
+		}
+
+		function saldo_negativo(){
+
+		}
+		//inicio desafio 3
+		function fazer_saque() {
+			var saque = parseFloat(prompt('Qual o valor para saque?'));
+			if (isNaN(saque) || saque === '') {
+				alert('Por favor, informe um número:');
+				fazer_saque();
+				return;
+			}
+			//desafio 4 || saque <= 0
+			if(saque > saldo || saque <= 0){
+				alert("Operação não autorizada")
+			} else {		
+				saldo -= saque;
+			}
+			ver_saldo();
+		//final desafio 3
+		}
+
+		function erro() {
+			alert('Por favor, informe um número entre 1 e 4');
+			inicio();
+		}
+
+		function extrato() {
+			var compras = ["Torra Torra = R$20,00 , Mc donalds = R$30,00 , Açai Doces R$40,00"]
+			alert(compras);
+		}
+
+		function transferencia(){
+			var usuarioRecebedor = parseInt(prompt("Dgite o numero da compra"));
+			if(IsNaN(usuarioRecebedor)|| usuarioRecebedor === ''){
+				alert("Por favor , informe um número:");
+			}
+			transferencia()
+		}
+
+		function sair() {
+			var confirma = confirm('Você deseja sair?');
+			if (confirma) {
+				window.close();
+			} else {
+				inicio();
+			}
+		}
+
+		
+		
+		inicio();
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
