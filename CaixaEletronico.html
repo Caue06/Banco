@@ -9,13 +9,13 @@
 
 			//inicio desafio 1
 
-			var nomeUsuario = prompt("Qual o seu nome?")
-			alert("Olá " + nomeUsuario + " é um prazer ter você por aqui!.")
+			var nomeUsuario = prompt("Qual o seu nome?");
+			alert("Olá " + nomeUsuario + " é um prazer ter você por aqui!.");
 
 			//final desafio 1
 
-			var escolha = parseInt(prompt('Selecione uma opção 1.) Saldo 2.) Depósito 3.) Saque 4.) Extraro 5.) Sair'));
-
+			//desafio 8 ordem menu
+			var escolha = parseInt(prompt('Selecione uma opção: 1.)Saldo 2.)Extrato 3.)Saque 4.)Depósito 5.)Tranferência 6.)Sair '));
 			
 
 			//inicio desafio 2
@@ -25,22 +25,22 @@
 					ver_saldo();
 					break;
 				case 2:
-					fazer_deposito();
+					extrato()
 					break;
 				case 3:
 					fazer_saque();
 					break;
 				case 4:
-					extrato()
+					fazer_deposito();
 					break;
 				case 5:
-					transferencia()
+					transferencia();
 					break;
 				case 6:
-					sair()
+					sair();
 					break;
 				default:
-					erro()
+					erro();
 					break;
 			}
 
@@ -49,24 +49,31 @@
 		}		
 
 		function ver_saldo() {
+			senha();
 			alert('Seu saldo atual é: ' + saldo);
 			inicio();
 		}
 
 		function fazer_deposito() {
 			var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+			//desafio 10
+			if (deposito <= 0) {
+				alert("Operação não autorizada");
+				fazer_deposito();
+			}
 			if (isNaN(deposito) || deposito === '') {
 				alert('Por favor, informe um número:');
 				fazer_deposito();
 			} else {
 				saldo += deposito;
 				ver_saldo();
-			}
+			}	
 		}
 
 		function saldo_negativo(){
 
 		}
+
 		//inicio desafio 3
 		function fazer_saque() {
 			var saque = parseFloat(prompt('Qual o valor para saque?'));
@@ -77,7 +84,7 @@
 			}
 			//desafio 4 || saque <= 0
 			if(saque > saldo || saque <= 0){
-				alert("Operação não autorizada")
+				alert("Operação não autorizada");
 			} else {		
 				saldo -= saque;
 			}
@@ -89,31 +96,54 @@
 			alert('Por favor, informe um número entre 1 e 4');
 			inicio();
 		}
-
+		//inicio desafio 5
 		function extrato() {
 			var compras = ["Torra Torra = R$20,00 , Mc donalds = R$30,00 , Açai Doces R$40,00"]
 			alert(compras);
+			inicio();
 		}
+		//final desafio 5
 
+		//inicio desafio 6
 		function transferencia(){
-			var usuarioRecebedor = parseInt(prompt("Dgite o numero da compra"));
-			if(IsNaN(usuarioRecebedor)|| usuarioRecebedor === ''){
+			var usuarioRecebedor = parseInt(prompt("Digite o numero da conta"));
+			if(isNaN(usuarioRecebedor) || usuarioRecebedor === ''){
 				alert("Por favor , informe um número:");
+				transferencia();
 			}
-			transferencia()
+
+			var valorTransf = parseInt(prompt("Quanto deseja transferir?"))
+			//desafio 7 || valorTransf <= 0
+			if (valorTransf > saldo || valorTransf <= 0) {
+				alert("Operação não autorizada");
+				transferencia();
+			}
+			saldo -= valorTransf
+			ver_saldo();
 		}
+		//final desafio 6
+
 
 		function sair() {
 			var confirma = confirm('Você deseja sair?');
 			if (confirma) {
+				alert(nomeUsuario + ", foi um prazer ter você por aqui!")
 				window.close();
 			} else {
 				inicio();
 			}
 		}
 
-		
-		
+		function senha() {
+			var senha = 1234;
+			var senhaUsuario = parseInt(prompt("Digite a senha"));
+			if(senhaUsuario != senha){
+				alert("Senha incorreta. Digite novamente.");
+				senha();	
+			}
+			
+		}
+
 		inicio();
 	</script>
 </head>
